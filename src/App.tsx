@@ -7,8 +7,6 @@ function App() {
   const [displayPokemon, setDisplayPokemon] = useState<Pokemon[]>([]);
 
   useEffect(() => {
-    let ignore = false;
-
     getPokedex().then((pokedex) => {
       Promise.all(
         pokedex.pokemon_entries.slice(0, 20).map((entry: PokedexEntry) => {
@@ -23,9 +21,6 @@ function App() {
         );
       });
     });
-    return () => {
-      ignore = true;
-    };
   }, []);
 
   const typeCount: Record<string, number> = {
